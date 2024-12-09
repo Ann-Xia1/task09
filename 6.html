@@ -4,10 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #gallery {
+            position: relative;
+        }
+        
+        .thumbnail {
+            cursor: pointer;
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #displayed-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
 <body>
+    <div id="gallery">
+        <img src="./img/1.jpeg" class="thumbnail" data-large-src="./img/1.jpeg">
+        <img src="./img/3.jpeg" class="thumbnail" data-large-src="./img/3.jpeg">
+      </div>
+      <div id="overlay">
+        <img id="displayed-image" src="">
+      </div>
     <script>
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+        thumbnail.addEventListener('click', function() {
+            document.getElementById('displayed-image').src = this.getAttribute('data-large-src');
+            document.getElementById('overlay').style.display = 'flex';
+        });
+        });
         
+        document.getElementById('overlay').addEventListener('click', function() {
+        this.style.display = 'none';
+        });
     </script>
 </body>
 </html>
