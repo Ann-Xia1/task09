@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         table {
+            width: 500px;
+            margin: 200px auto;
+            border-collapse: collapse;
+            /* 边框折叠 */
+            text-align: center;
+        }
+        
+        th,
+        td {
+            border: 1px solid #000000;
+        }
+        
+        tr:first-child {
+            height: 40px;
+            background-color: #e3e3e3;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" cellspacing="0">
+        <tr>
+            <th>姓名</th>
+            <th>科目</th>
+            <th>分数</th>
+            <th>操作</th>
+        </tr>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var arr = [{
+            name: '魏璎珞',
+            subject: 'javascript',
+            score: 100
+        }, {
+            name: '弘历',
+            subject: 'javascript',
+            score: 90
+        }, {
+            name: '傅恒',
+            subject: 'javascript',
+            score: 99
+        }, {
+            name: '明玉',
+            subject: 'javascript',
+            score: 89
+        }];//行的长度为元素的长度
+        //列的长度为元素属性的长度
+ 
+        var tbody = document.querySelector("tbody");
+        for (var i = 0; i < arr.length; i++) {
+            var tr = document.createElement("tr");
+            tbody.appendChild(tr);
+            for (var k in arr[i]) {//for in 遍历
+                var td = document.createElement("td");
+                td.innerHTML = arr[i][k];
+                tr.appendChild(td);
+            }
+            var td = document.createElement("td");
+            td.innerHTML = '<a href="#">删除</a>'
+            tr.appendChild(td)
+        }
+    
+        var as = document.querySelectorAll("a");
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function () {
+                tbody.removeChild(this.parentNode.parentNode)
+            }
+        }
+ 
+ 
+    </script>
+</body>
+</html>

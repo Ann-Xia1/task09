@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .star {
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 24px;
+            color: #000;
+        }
+        .star.active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="star-container"></div>
+    <script>
+        var sum = Number(prompt('输入心数'));
+        generateStars(sum);
+        function generateStars(count) {
+            const container = document.getElementById('star-container');
+            container.innerHTML = '';
+        
+            for (var i = 0; i < count; i++) {
+                const star = document.createElement('span');
+                star.innerHTML = '❤';
+                star.classList.add('star');//添加类名进行样式的编写
+                star.dataset.index = i;//前i个心进行颜色填充
+                star.addEventListener('click', function() {
+                    for (var j = 0; j <= this.dataset.index; j++) {
+                        var starToChange = container.children[j];
+                        starToChange.classList.add('active');
+                    }
+                    console.log(this.dataset.index);
+                    if (this.dataset.index == 0) {
+                        console.log('非常不满意！');
+                    } else if (this.dataset.index == 1) {
+                        console.log('有些不满意！');
+                    } else if (this.dataset.index == 2) {
+                        console.log('一般與常見！');
+                    } else if (this.dataset.index == 3) {
+                        console.log('很满意！');
+                    } else {
+                        console.log('超级满意！');
+                    }
+                });
+                container.appendChild(star);
+            }
+        }
+    </script>
+</body>
+</html>
